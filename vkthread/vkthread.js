@@ -26,9 +26,9 @@
 	      return JSON.stringify(obj, function (key, value) {
 	        var fnBody;
 	      if (value instanceof Function || typeof value === 'function') {
-	
+
 	        fnBody = value.toString();
-	
+
 	        if (fnBody.length < 8 || fnBody.substring(0, 8) !== 'function') { //this is ES6 Arrow Function
 	          return '_NuFrRa_' + fnBody;
 	        }
@@ -49,7 +49,7 @@
      */
     var VkthreadProvider = function(){
 
-        this.$get = function($q){
+        this.$get = [ '$q', function($q){
 
             var VkThread = function(){
                 this.version = '2.5.0';
@@ -114,7 +114,7 @@
             };
 
          return vkThread;
-      };
+     }];
   };
   angular.module('ng-vkThread', [])
          .provider('vkThread', VkthreadProvider);
